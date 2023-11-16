@@ -7,10 +7,17 @@ parser.add_argument('--length', help='Length of text to generate', default=20, t
 parser.add_argument('--verbose', help='Print timings etc.', default=True, type=bool, required=False)
 
 args = parser.parse_args()
+
+
+def get_hint(model='model.pkl', length=8, prefix='Ты опять'):
+    model = pickle.load(open(model, 'rb'))
+    return model.generate(length, prefix)
+
+
 if __name__ == "__main__":
-    model = pickle.load(open('model.pkl', 'rb'))
+    # model = pickle.load(open('model.pkl', 'rb'))
     print(f'Generated sample:')
     start = time.time()
-    print(model.generate(args.length, args.prefix))
+    print(get_hint('model.pkl', args.length, args.prefix))
     if args.verbose:
         print(f'Sample generating took {time.time() - start} seconds.')
