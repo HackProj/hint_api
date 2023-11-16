@@ -11,7 +11,7 @@ args = parser.parse_args()
 
 def get_hint(model='model.pkl', length=8, prefix='Ты опять'):
     model = pickle.load(open(model, 'rb'))
-    return model.generate(length, prefix)
+    return model.generate(length, prefix).split('?')[0] + '?'
 
 
 if __name__ == "__main__":
