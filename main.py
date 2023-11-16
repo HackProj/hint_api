@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -17,3 +18,6 @@ app = FastAPI()
 )
 async def root():
     return {"message": get_hint()}
+
+
+uvicorn.run(app, port=8080)
