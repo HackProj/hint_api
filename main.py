@@ -13,7 +13,7 @@ app = FastAPI()
 
 
 @app.get(
-    path="/get-hint",
+    path="/hint",
     response_model=HintModel,
 )
 async def root():
