@@ -1,12 +1,19 @@
-import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+from generate import get_hint
+
+
+class HintModel(BaseModel):
+    message: str
+
 
 app = FastAPI()
 
 
-@app.get("/")
+@app.get(
+    path="/get_hint",
+    response_model=HintModel,
+)
 async def root():
-    return {"message": "Hello World"}
-
-
-uvicorn.run(app, port=8080)
+    return {"message": get_hint()}
